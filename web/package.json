@@ -1,7 +1,7 @@
 {
   "name": "web",
   "version": "1.0.0",
-  "description": "ticket2-web",
+  "description": "web",
   "main": "gulpfile.js",
   "dependencies": {
     "gulp": "^3.9.1",
