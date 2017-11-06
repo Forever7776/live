@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+  mvc:
+    locale: zh_CN
+    date-format: yyyy-MM-dd
+  http:
+    multipart:
+      max-file-size: 10MB
+
+#server
+server:
+  address: 127.0.0.1
+  context-path: /live/
+  port: 9090
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+  error:
+    path: /error
+
+
+#logging
+logging:
+  level: warn
+  file: ./logs/error.log
+
+
+
+
