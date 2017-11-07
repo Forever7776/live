@@ -13,6 +13,6 @@ public class IndexController extends BaseController{
     @RequestMapping
     public String index(){
         logger.info("{}","shouey");
-        return "hello";
+        return "front/index";
     }
 }

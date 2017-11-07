@@ -7,6 +7,23 @@ spring:
   http:
     multipart:
       max-file-size: 10MB
+  freemarker:
+    allow-request-override: false
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .ftl
+    template-loader-path: classpath:/WEB-INF/view/
+    request-context-attribute: request
+    prefix: /WEB-INF/view
+
+
+
+
 
 #server
 server:
@@ -24,7 +41,4 @@ server:
 logging:
   level: warn
   file: ./logs/error.log
-
-
-
 

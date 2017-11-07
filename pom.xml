@@ -12,6 +12,7 @@
         <module>web</module>
         <module>core</module>
         <module>sdk</module>
+        <module>zkclient</module>
     </modules>
 
     <!-- Inherit defaults from Spring Boot -->
