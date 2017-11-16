@@ -1,6 +1,3 @@
-
-import java.util.List;
-
 import command.Command;
 import command.connect.CloseCommand;
 import command.listener.NodeCacheListenerCommand;
@@ -10,19 +7,13 @@ import command.lock.InterProcessMutexCommand;
 import command.lock.InterProcessReadWriteLockCommand;
 import command.lock.InterProcessSemaphoreMutexCommand;
 import command.path.*;
-import org.apache.curator.CuratorZookeeperClient;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.framework.listen.Listenable;
 import org.apache.curator.framework.recipes.cache.NodeCache;
 import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
-import org.apache.curator.framework.recipes.locks.InterProcessLock;
-import org.apache.curator.framework.recipes.locks.InterProcessMultiLock;
-import org.apache.curator.framework.recipes.locks.InterProcessMutex;
-import org.apache.curator.framework.recipes.locks.InterProcessReadWriteLock;
-import org.apache.curator.framework.recipes.locks.InterProcessSemaphoreMutex;
+import org.apache.curator.framework.recipes.locks.*;
 import org.apache.curator.framework.state.ConnectionStateListener;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
@@ -30,6 +21,8 @@ import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import support.ZkClientException;
+
+import java.util.List;
 
 public class ZkClientImpl
         implements ZkClient {

@@ -1,3 +1,5 @@
+
+
 #开发环境
 #jdbc_config
 spring:
@@ -23,3 +25,11 @@ spring:
     max-pool-prepared-statement-per-connection-size: 20
     connection-properties: config.decrypt=true;druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     filters: stat,wall,log4j2
+  #rabbitmq config
+  rabbitmq:
+    host: 127.0.0.1
+    username: guest
+    password: guest
+
+zookeeper:
+  host: 127.0.0.1:2181

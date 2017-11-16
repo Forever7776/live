@@ -20,7 +20,7 @@ var path = {
     resources : 'target/' + project + '/resources',
     css: 'target/' + project + '/resources/css',
     js: 'target/' + project + '/resources/js',
-    jsp: 'target/' + project + '/WEB-INF/templates',
+    jsp: 'target/' + project + '/WEB-INF/views',
     static_build_path: 'target/build',
 };
 

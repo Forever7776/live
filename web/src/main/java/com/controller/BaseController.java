@@ -1,4 +1,4 @@
-package controller;
+package com.controller;
 
 import constants.CoreConstants;
 import org.slf4j.Logger;

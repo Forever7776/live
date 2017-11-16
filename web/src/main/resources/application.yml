@@ -10,19 +10,14 @@ spring:
   freemarker:
     allow-request-override: false
     cache: false
-    check-template-location: true
+    check-template-location: false
     charset: UTF-8
     content-type: text/html
     expose-request-attributes: false
     expose-session-attributes: false
     expose-spring-macro-helpers: false
     suffix: .ftl
-    template-loader-path: classpath:/WEB-INF/view/
     request-context-attribute: request
-    prefix: /WEB-INF/view
-
-
-
 
 
 #server

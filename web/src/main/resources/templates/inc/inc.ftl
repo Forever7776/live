@@ -1,7 +1,10 @@
 <#include "./public.ftl"/>
 <#macro html title_="mlive" menu_=true upload_=false css_=[] app_=[] editor_=false script_=[] echarts=false datepicker_=false autocompleter_=false datetimepicker_=false nestable_=false chosen_=false>
 <!DOCTYPE html>
-<html lang="zh">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="zh">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
