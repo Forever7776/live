@@ -1,4 +1,4 @@
-### live
+### live(springboot-mybatis-freemarker)
 
 pom父文件请修改自己搭建的nexus
 
