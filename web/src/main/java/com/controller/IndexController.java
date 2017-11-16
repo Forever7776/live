@@ -15,11 +15,10 @@ public class IndexController extends BaseController{
     @RequestMapping
     @ResponseBody
     public String index(){
-        logger.info("sssss");
         return "hello";
     }
 
-    @RequestMapping("/index1")
+    @RequestMapping("/index")
     public String front(){
         return "front/index";
     }
