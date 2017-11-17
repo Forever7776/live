@@ -1,6 +1,6 @@
-package com.controller;
+package com.kz.controller;
 
-import constants.CoreConstants;
+import com.kz.constants.CoreConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

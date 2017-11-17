@@ -1,4 +1,4 @@
-package constants;
+package com.kz.constants;
 
 /**
  * Created by 0 on 2017-11-06.

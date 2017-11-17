@@ -1,8 +1,8 @@
-package entity;
+package com.kz.entity;
 
 import java.util.Date;
 
-public class sysUser {
+public class SysUser {
     private String id;
 
     private String username;

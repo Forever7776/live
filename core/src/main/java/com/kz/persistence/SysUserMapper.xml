@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="persistence.sysUserMapper" >
-  <resultMap id="BaseResultMap" type="entity.sysUser" >
+<mapper namespace="com.kz.persistence.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.kz.entity.SysUser" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -73,7 +73,7 @@
   <sql id="Base_Column_List" >
     id, username, password, name, login_time, insert_date, status, phone, email
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="entity.sysUserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kz.entity.SysUserExample" >
     select
     <if test="distinct" >
       distinct
@@ -98,13 +98,13 @@
     delete from sys_user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="entity.sysUserExample" >
+  <delete id="deleteByExample" parameterType="com.kz.entity.SysUserExample" >
     delete from sys_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="entity.sysUser" >
+  <insert id="insert" parameterType="com.kz.entity.SysUser" >
     insert into sys_user (id, username, password, 
       name, login_time, insert_date, 
       status, phone, email
@@ -114,7 +114,7 @@
       #{status,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="entity.sysUser" >
+  <insert id="insertSelective" parameterType="com.kz.entity.SysUser" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -175,7 +175,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="entity.sysUserExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.kz.entity.SysUserExample" resultType="java.lang.Integer" >
     select count(*) from sys_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -231,7 +231,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="entity.sysUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.kz.entity.SysUser" >
     update sys_user
     <set >
       <if test="username != null" >
@@ -261,7 +261,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="entity.sysUser" >
+  <update id="updateByPrimaryKey" parameterType="com.kz.entity.SysUser" >
     update sys_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
