@@ -1,4 +1,4 @@
-package util;
+package tools.util;
 
 import com.fasterxml.uuid.Generators;
 import org.apache.commons.lang3.RandomStringUtils;

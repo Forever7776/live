@@ -42,7 +42,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="sys_user" domainObjectName="sysUser"
+        <table tableName="sys_user" domainObjectName="SysUser"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
