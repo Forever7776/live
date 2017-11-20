@@ -4,6 +4,7 @@ import com.constants.SystemConstant;
 import com.kz.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,7 +26,7 @@ public class IndexController extends BaseController {
     }
 
     @RequestMapping("/index")
-    public String front() {
+    public String front(ModelMap modelMap) {
         return "front/index";
     }
 }

@@ -16,7 +16,7 @@ public class AccessLinkInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        request.getSession().setAttribute("root",request.getContextPath());
+        request.setAttribute("ctx", "http://"+request.getRemoteHost()+":"+request.getLocalPort()+"/live");
         return true;
     }
 

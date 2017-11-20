@@ -2,6 +2,8 @@ package com;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -27,13 +29,13 @@ import javax.servlet.ServletException;
 @EnableAutoConfiguration
 @EnableAsync
 @MapperScan("com.kz.persistence")
-@PropertySource({"classpath:application.yml","classpath:config.properties"})
+@PropertySource({"classpath:application.yml", "classpath:config.properties"})
 @ComponentScan(basePackages = "com.kz", includeFilters = {@ComponentScan.Filter(Aspect.class)})
 //@ImportResource({"classpath:dubbo.xml"})
 //@ImportResource({"classpath:dubbo.xml", "classpath:rabbitmq.xml"})
 public class Application extends SpringBootServletInitializer {
 
-    @Autowired
+    public final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -44,11 +46,12 @@ public class Application extends SpringBootServletInitializer {
         return new ServletContextInitializer() {
             @Override
             public void onStartup(ServletContext servletContext) throws ServletException {
-                new QiNiuApi(ConfigTool.getProp("qiniu.access"),ConfigTool.getProp("qiniu.secret"),ConfigTool.getProp("qiniu.bucket"));
-                System.out.println("##########七牛启动成功##########");
+                new QiNiuApi(ConfigTool.getProp("qiniu.access"), ConfigTool.getProp("qiniu.secret"), ConfigTool.getProp("qiniu.bucket"));
+                logger.info("##########七牛启动成功##########");
             }
         };
     }
+
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);
