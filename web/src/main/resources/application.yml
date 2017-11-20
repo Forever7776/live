@@ -13,9 +13,9 @@ spring:
     check-template-location: false
     charset: UTF-8
     content-type: text/html
-    expose-request-attributes: false
-    expose-session-attributes: false
-    expose-spring-macro-helpers: false
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
     suffix: .ftl
     request-context-attribute: request
 
@@ -24,7 +24,7 @@ spring:
 server:
   address: 127.0.0.1
   context-path: /live/
-  port: 9090
+  port: 8087
   session-timeout: 30
   tomcat.max-threads: 0
   tomcat.uri-encoding: UTF-8
@@ -36,4 +36,6 @@ server:
 logging:
   level: warn
   file: ./logs/error.log
+
+
 

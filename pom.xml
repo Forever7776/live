@@ -11,7 +11,7 @@
     <modules>
         <module>web</module>
         <module>core</module>
-        <module>sdk</module>
+        <module>tools</module>
         <module>zkclient</module>
     </modules>
 

@@ -1,5 +1,6 @@
 package com.kz.controller;
 
+import com.constants.SystemConstant;
 import com.kz.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,6 @@ public class IndexController extends BaseController {
 
     @RequestMapping("/index")
     public String front() {
-
         return "front/index";
     }
 }

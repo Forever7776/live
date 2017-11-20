@@ -1,10 +1,7 @@
 <#include "./public.ftl"/>
 <#macro html title_="mlive" menu_=true upload_=false css_=[] app_=[] editor_=false script_=[] echarts=false datepicker_=false autocompleter_=false datetimepicker_=false nestable_=false chosen_=false>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="zh">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -47,8 +44,8 @@
 </section>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-<script src="<@res u_="js/tools/layer-v3.1/layer.js"/>"></script>
-<script src="<@res u_="js/tools/ajaxfileupload.js"/>"></script>
+<#--<script src="<@res u_="js/tools/layer-v3.1/layer.js"/>"></script>
+<script src="<@res u_="js/tools/ajaxfileupload.js"/>"></script>-->
 <#--<script>layer.config({extend: ["extend/layer.ext.js", "skin/moon/style.css"], skin: "layer-ext-moon"});</script>-->
     <#if echarts>
     <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>

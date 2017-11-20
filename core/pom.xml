@@ -24,7 +24,7 @@
     <dependencies>
         <dependency>
             <groupId>com.kz</groupId>
-            <artifactId>sdk</artifactId>
+            <artifactId>tools</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -110,7 +110,6 @@
             <artifactId>spring-context-support</artifactId>
             <version>4.3.12.RELEASE</version>
         </dependency>
-
 
     </dependencies>
 
