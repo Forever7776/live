@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <link rel="shortcut icon" href="/resources/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico">
     <title>${title_!''}</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +29,7 @@
         <link rel="stylesheet" type="text/css" href="<@res u_="scripts/chosen/chosen.min.css"/>">
     </#if>
     <#list css_ as li>
-        <link rel="stylesheet" href="${li}">
+        <link rel="stylesheet" href="${root}/css/${li}">
     </#list>
 </head>
 <body class="sticky-header">
@@ -43,9 +43,9 @@
     </div>
 </section>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-<#--<script src="<@res u_="js/tools/layer-v3.1/layer.js"/>"></script>
-<script src="<@res u_="js/tools/ajaxfileupload.js"/>"></script>-->
+<script src="<@res u_="tools/jquery/jquery.min.js"/>"></script>
+<script src="<@res u_="tools/jquery/jquery.form.js"/>"></script>
+<script src="<@res u_="tools/ajaxfileupload.js"/>"></script>
 <#--<script>layer.config({extend: ["extend/layer.ext.js", "skin/moon/style.css"], skin: "layer-ext-moon"});</script>-->
     <#if echarts>
     <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>

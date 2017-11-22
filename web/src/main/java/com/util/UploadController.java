@@ -4,7 +4,6 @@ package com.util;
 import com.alibaba.fastjson.JSONObject;
 import com.kz.controller.BaseController;
 import com.kz.entity.QiNiuFile;
-import com.kz.service.qiniu.QiNiuFileService;
 import com.kz.service.qiniu.QiNiuService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -33,9 +32,9 @@ public class UploadController extends BaseController {
 
     private static final String suffixImage = ConfigTool.getProp("qiniu.suffixImage");
 
-    @RequestMapping("/pic")
+    @RequestMapping(value = "/pic")
     @ResponseBody
-    public JSONObject index(@RequestParam(value = "file", required = false)MultipartFile multipartFile, HttpServletRequest request) {
+    public JSONObject index(@RequestParam(value = "file", required = false) MultipartFile multipartFile, HttpServletRequest request) {
         JSONObject result = new JSONObject();
         if (multipartFile.isEmpty()) {
             result.put("msg", "图片为空");

@@ -4,8 +4,8 @@
     <#case 9>?imageMogr2/thumbnail/80x60<#break><#case 10>?imageView2/0/w/288/h/182<#break><#case 11>?imageMogr2/thumbnail/!50p<#break><#case 12>?imageMogr2/thumbnail/240x200<#break>
 </#switch></#if></#if></#macro>
 <#--res url -->
-
-<#macro res u_=""><#if context??>${context.ver('/resources/static/'+u_)}<#else>$!{}/resources/static/${u_}</#if></#macro>
+<#assign root = request.contextPath/>
+<#macro res u_=""><#if context??>${context.ver('/resources/static/'+u_)}<#else>${root}/js/${u_}</#if></#macro>
 <#macro baidutj>
 <script>
     var _hmt = _hmt || [];

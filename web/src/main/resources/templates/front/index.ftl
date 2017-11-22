@@ -1,38 +1,77 @@
 <#include "../inc/inc.ftl"/>
-<@html>
+<@html upload_=true css_=['upload.css']>
 <div style="padding: 100px 100px 10px;">
-    <form action="/upload/pic" class="bs-example bs-example-form" method="get" role="form" enctype="multipart/form-data">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="input-group">
-                    <input type="file" name="file" class="form-control" onchange="upload()">
-                    <span class="input-group-btn">
-                        <button class="btn btn-red-lg" type="button">上传</button>
-                    </span>
-                </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
-            <br/><br/>
-            <div class="col-lg-6">
-                <button class="btn btn-default" type="submit">确定</button>
-            </div><!-- /.col-
-        </div><!-- /.row -->
-    </form>
+    <div class="form-group">
+        <label class="col-xs-2 col-xs-2 control-label">图片：</label>
+        <div class="col-xs-10">
+
+            <div id="goodsImages">
+                <div class="goodsImageList filled">
+                    <ul class="imagelist">
+                        <#if (goods.images)??>
+                            <#list goods.images as previewImg>
+                                <li id="WU_FILE_${previewImg.file_key!''}"
+                                    class="preview-image-li <#if (goods.cover_image_key!'')==previewImg.file_key>cover-select<#else >no-cover-select</#if>">
+                                    <p class="title">${previewImg.file_key!''}</p>
+                                    <p class="imgWrap"><img src="${imgurl+previewImg.file_key}"></p>
+                                    <p class="progress"><span></span></p>
+                                    <div class="file-panel" style="height:30px;">
+                                        <i class="fa fa-heart" <#if (goods.cover_image_key!'')!=previewImg.file_key>
+                                           onclick="setCoverKey(this,'${previewImg.file_key!0}')" </#if>
+                                           title="设为封面图片"></i>
+                                        <i class="fa fa-trash-o"
+                                           onclick="deletePreviewImage(this,'${previewImg.file_key!0}')"
+                                           title="删除图片"></i>
+                                        <!--
+                                        <span class="rotateRight">向右旋转</span>
+                                        <span class="rotateLeft">向左旋转</span>
+                                        -->
+                                    </div>
+                                </li>
+                            </#list>
+                        </#if>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="uploader" class="wu-example">
+                <div class="queueList">
+                    <div id="dndArea" class="placeholder">
+                        <div id="filePicker"></div>
+                        <p>或将照片拖到这里，单次最多可选300张(720px*480px以下)</p>
+                    </div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress">
+                        <span class="text">0%</span>
+                        <span class="percentage"></span>
+                    </div>
+                    <div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker2"></div>
+                        <div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br/><br/>
+    <button class="btn btn-default" type="submit">确定</button>
 </div>
 
 <@script_>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/tools/upload/upload.js"></script>
 <script>
-    function upload() {
-        $.ajaxFileUpload({
-            url : 'http://127.0.0.1:8087/upload/pic',// 需要链接到服务器地址
-            fileElementId : 'pictureFile',// 文件选择框的id属性
-            dataType : 'text/html',// 服务器返回的格式，可以是json
-            success : function(data) {
-                //data = /{[\"\:\w\d\,\/\\/.]+}/.exec(data)[0];
-                var json = jQuery.parseJSON(data);
-                console.log(json)
-            }
-        });
+    function uploadSuccess(f, d) {
+        console.log("f:" + f)
+        console.log("d:" + d)
+        console.log("key:" + d.key)
+        var goods_code = $("#goods_code").val();
+        var data = {"goods_code": goods_code, "fileId": d.id, "file_key": d.key, "url": d.url};
     }
+
 </script>
 </@script_>
 </@html>
