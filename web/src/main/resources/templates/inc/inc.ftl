@@ -1,5 +1,5 @@
 <#include "./public.ftl"/>
-<#macro html title_="mlive" menu_=true upload_=false css_=[] app_=[] editor_=false script_=[] echarts=false datepicker_=false autocompleter_=false datetimepicker_=false nestable_=false chosen_=false>
+<#macro html title_="mlive" menu_=true upload_=false css_=[] app_=[] editor_=false script_=[] echarts=false datepicker_=false autocompleter_=false datetimepicker_=false nestable_=false chosen_=false >
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,11 +31,9 @@
     <#list css_ as li>
         <link rel="stylesheet" href="${root}/css/${li}">
     </#list>
+    <link rel="stylesheet" type="text/css" href="/orther/layer/theme/default/layer.css">
 </head>
 <body class="sticky-header">
-<#--<div id="preloader">
-    <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
-</div>-->
 <section>
     <!-- main content start-->
     <div style="background: #eff0f4;min-height: 500px;" id="iframe-main-tontent">
@@ -43,72 +41,47 @@
     </div>
 </section>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="<@res u_="tools/jquery/jquery.min.js"/>"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="<@res u_="tools/jquery/jquery.form.js"/>"></script>
-<script src="<@res u_="tools/ajaxfileupload.js"/>"></script>
-<#--<script>layer.config({extend: ["extend/layer.ext.js", "skin/moon/style.css"], skin: "layer-ext-moon"});</script>-->
-    <#if echarts>
-    <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
-    </#if>
-    <#if editor_>
-    <script src="<@res u_="plug-in/editor/kindeditor-all.js"/>"></script>
-    </#if>
-    <#if upload_>
-    <script src="http://cdn.bootcss.com/webuploader/0.1.1/webuploader.min.js"></script>
-    </#if>
-    <#if datepicker_>
-    <script src="http://cdn.bootcss.com/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap-datepicker/1.4.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-    </#if>
-    <#if datetimepicker_>
-    <script src="http://cdn.bootcss.com/moment.js/2.10.6/moment.min.js"></script>
-    <script src="http://cdn.bootcss.com/moment.js/2.10.6/locale/zh-cn.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap-datetimepicker/4.15.35/js/bootstrap-datetimepicker.min.js"></script>
-    </#if>
-    <#if nestable_>
-    <script src="<@res u_="platform/js/nestable/jquery.nestable.js"/>"></script>
-    </#if>
-    <#if chosen_>
-    <script src="<@res u_="scripts/chosen/chosen.jquery.min.js"/>"></script>
-    </#if>
-<!--common scripts for all pages-->
-<#--<script src="<@res u_="platform/js/scripts.js"/>"></script>
-<script src="<@res u_="platform/js/common.js"/>"></script>
-<script src="<@res u_="mall/common/location.js"/>"></script>-->
-<!--省市区县 scriptss-->
-<#--<script src="<@res u_="scripts/location/area.js"/>"></script>
-<script src="<@res u_="scripts/location/location.js"/>"></script>-->
-
+<script src="/orther/layer/layer.js"></script>
+<#if echarts>
+<script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+</#if>
+<#if editor_>
+<script src="<@res u_="plug-in/editor/kindeditor-all.js"/>"></script>
+</#if>
+<#if upload_>
+<script src="http://cdn.bootcss.com/webuploader/0.1.1/webuploader.min.js"></script>
+</#if>
+<#if datepicker_>
+<script src="http://cdn.bootcss.com/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-datepicker/1.4.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+</#if>
+<#if datetimepicker_>
+<script src="http://cdn.bootcss.com/moment.js/2.10.6/moment.min.js"></script>
+<script src="http://cdn.bootcss.com/moment.js/2.10.6/locale/zh-cn.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-datetimepicker/4.15.35/js/bootstrap-datetimepicker.min.js"></script>
+</#if>
+<#if nestable_>
+<script src="<@res u_="platform/js/nestable/jquery.nestable.js"/>"></script>
+</#if>
+<#if chosen_>
+<script src="<@res u_="scripts/chosen/chosen.jquery.min.js"/>"></script>
+</#if>
 
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <#list script_ as li>
-    <script src="${li}"></script>
+    <script src="<@res u_=li+'.js'/>"></script>
     </#list>
-    <#list app_ as li>
-    <script src="<@res u_='platform/app/'+li+'.js'/>"></script>
-    </#list>
-<script>
-    $(function () {
-        try {
-            autoHeight();
-        } catch (e) {
-        }
-    });
-
-    var common_height = window.screen.height / 2 + 100 + "px", common_height_4 = window.screen.height / 4 + "px",
-            common_height_4_1 = window.screen.height / 4 + 50 + "px";
-    ;
-</script>
 </body>
 </html>
 </#macro>
+
 <#macro script_>
     <#nested />
 </#macro>
-
 
 
 <#macro noLayoutHtml title_="mlive" upload_=false script_=[] css_=[]>

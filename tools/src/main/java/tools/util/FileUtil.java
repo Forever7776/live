@@ -2,6 +2,7 @@ package tools.util;
 
 
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.logging.Log;
@@ -20,9 +21,9 @@ import java.util.Date;
  * Created by kz on 2017/11/17.
  * 文件上传分类,不同文件上传的有不同flag
  */
-public class FileUtils extends org.apache.commons.io.FileUtils{
+public class FileUtil{
 
-    private final static Log log = LogFactory.getLog(FileUtils.class);
+    private final static Log log = LogFactory.getLog(FileUtil.class);
 
     /**连接超时 5秒*/
     private final static int HTTP_CONNECT_TIMEOUT = 5*1000;
@@ -76,6 +77,8 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
     public static String getPath() {
         String path = ConfigTool.getProp("qiniu.path");
         String datePath = DateFormatUtils.format(new Date(), "/yyyy/MM/dd/");
+        File file = new File(datePath);
+        file.mkdirs();
         return path.concat(datePath);
     }
 
@@ -83,6 +86,10 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
         String suffix = getFileSuffix(name);
         String key = System.currentTimeMillis() + "" + ((int) ((Math.random() * 9 + 1) * 100000)) + "".concat(".").concat(suffix);
         return key;
+    }
+
+    public static byte[] getFileByte(File file) throws IOException {
+        return FileUtils.readFileToByteArray(file);
     }
 
 
