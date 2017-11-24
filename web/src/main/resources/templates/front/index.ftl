@@ -1,5 +1,5 @@
 <#include "../inc/inc.ftl"/>
-<@html upload_=true css_=['upload.css'] script_=['tools/upload/upload']>
+<@html upload_=true css_=['upload.css'] script_=['tools/upload/upload.js']>
 <div style="padding: 100px 100px 10px;">
     <div class="form-group">
         <label class="col-xs-2 col-xs-2 control-label">图片：</label>
@@ -60,7 +60,7 @@
     <button class="btn btn-default" type="submit">确定</button>
 </div>
 
-
+<script src="${root}/js/index.js"></script>
 <script>
     function uploadSuccess(f, d) {
         console.log("f:" + f)

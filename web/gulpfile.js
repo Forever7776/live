@@ -17,10 +17,10 @@ var project = 'web';
 var path = {
     target : 'target',
     base : 'target/' + project,
-    resources : 'target/' + project + '/resources',
-    css: 'target/' + project + '/resources/css',
-    js: 'target/' + project + '/resources/js',
-    jsp: 'target/' + project + '/WEB-INF/views',
+    resources : 'target/' + project + '/WEB-INF/classes/static',
+    css: 'target/' + project + '/WEB-INF/classes/static'+'/css',
+    js: 'target/' + project + '/WEB-INF/classes/static'+'/js',
+    templates:'target/' + project + '/WEB-INF/classes/static'+'/templates',
     static_build_path: 'target/build',
 };
 
@@ -70,29 +70,27 @@ gulp.task('lint', function () {
             path.js + '/**/*.js'
         ]
     )
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
 });
 
 
 /** 压缩js文件 */
 gulp.task('js', function () {
-    const f = filter([path.js + '/**/*.js'
-            , '!' + path.js + '/module/common/menu.js',
-            '!' + path.js +'/tools/**'],
+    const f = filter([path.js + '/**/*.js','!' + path.js +'/tools/**'],
         {restore: true});
     return gulp.src(
         [
             path.js + '/**/*',
         ]
     )
-        .pipe(f)
-        .pipe(uglify())
-        .pipe(rev())
-        .pipe(f.restore)
-        .pipe(gulp.dest(path.static_build_path + "/resources/js"))
-        .pipe(rev.manifest())
-        .pipe(gulp.dest(path.static_build_path + "/rev/js"));
+    .pipe(f)
+    .pipe(uglify())
+    .pipe(rev())
+    .pipe(f.restore)
+    .pipe(gulp.dest(path.static_build_path + "/resources/js"))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest(path.static_build_path + "/rev/js"));
 });
 
 /**
@@ -101,15 +99,9 @@ gulp.task('js', function () {
 gulp.task('rev', function () {
     return gulp.src(
         [path.static_build_path + '/rev/**/*.json',
-            path.base + '/**/*.jsp',
-            path.base + '/**/*.vm',
-            path.base + '/**/*.html'])
+            path.base + '/**/*.ftl'])
         .pipe(revCollector({
             replaceReved: true,
-            dirReplacements: {
-                '/css': '/css',
-                '/js': '/js'
-            }
         }))
         .pipe(gulp.dest(path.base));
 });

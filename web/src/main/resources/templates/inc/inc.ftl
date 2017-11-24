@@ -31,7 +31,7 @@
     <#list css_ as li>
         <link rel="stylesheet" href="${root}/css/${li}">
     </#list>
-    <link rel="stylesheet" type="text/css" href="/orther/layer/theme/default/layer.css">
+    <link rel="stylesheet" type="text/css" href="${root}/js/tools/layer/theme/default/layer.css">
 </head>
 <body class="sticky-header">
 <section>
@@ -43,7 +43,7 @@
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="<@res u_="tools/jquery/jquery.form.js"/>"></script>
-<script src="/orther/layer/layer.js"></script>
+<script src="${root}/js/tools/layer/layer.js"></script>
 <#if echarts>
 <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
 </#if>
@@ -73,7 +73,7 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <#list script_ as li>
-    <script src="<@res u_=li+'.js'/>"></script>
+    <script src="<@res u_=li/>"></script>
     </#list>
 </body>
 </html>
