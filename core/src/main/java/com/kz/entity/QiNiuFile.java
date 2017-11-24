@@ -3,13 +3,11 @@ package com.kz.entity;
 import java.util.Date;
 
 public class QiNiuFile {
-    private Integer id;
+    private String key;
 
     private Integer userId;
 
     private String fileName;
-
-    private String key;
 
     private String hash;
 
@@ -17,12 +15,12 @@ public class QiNiuFile {
 
     private Date createTime;
 
-    public Integer getId() {
-        return id;
+    public String getKey() {
+        return key;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setKey(String key) {
+        this.key = key == null ? null : key.trim();
     }
 
     public Integer getUserId() {
@@ -39,14 +37,6 @@ public class QiNiuFile {
 
     public void setFileName(String fileName) {
         this.fileName = fileName == null ? null : fileName.trim();
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key == null ? null : key.trim();
     }
 
     public String getHash() {

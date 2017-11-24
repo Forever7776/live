@@ -3,6 +3,7 @@ package com.kz.service;
 import com.kz.entity.SysUser;
 import com.kz.entity.SysUserExample;
 import com.kz.persistence.SysUserMapper;
+import com.kz.service.qiniu.QiNiuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,8 @@ public class SysUserService {
 
     @Autowired
     private SysUserMapper sysUserMapper;
+    @Autowired
+    private  QiNiuFileService qiNiuFileServic1e;
 
     public List<SysUser> getAll(){
         return sysUserMapper.selectByExample(new SysUserExample());

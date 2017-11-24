@@ -18,6 +18,6 @@ public class QiNiuFileService {
     private QiNiuFileMapper qiniuFileMapper;
 
     public void save(QiNiuFile qiNiuFile){
-        qiniuFileMapper.insertSelective(qiNiuFile);
+        qiniuFileMapper.insert(qiNiuFile);
     }
 }

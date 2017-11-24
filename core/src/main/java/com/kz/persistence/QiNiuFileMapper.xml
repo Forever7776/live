@@ -2,10 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.kz.persistence.QiNiuFileMapper" >
   <resultMap id="BaseResultMap" type="com.kz.entity.QiNiuFile" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="key" property="key" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="file_name" property="fileName" jdbcType="VARCHAR" />
-    <result column="key" property="key" jdbcType="VARCHAR" />
     <result column="hash" property="hash" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="BIT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -69,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_id, file_name, key, hash, status, create_time
+    key, user_id, file_name, hash, status, create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kz.entity.QiNiuFileExample" >
     select
@@ -86,15 +85,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from qiniu_file
-    where id = #{id,jdbcType=INTEGER}
+    where key = #{key,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from qiniu_file
-    where id = #{id,jdbcType=INTEGER}
+    where key = #{key,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.kz.entity.QiNiuFileExample" >
     delete from qiniu_file
@@ -103,27 +102,24 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.kz.entity.QiNiuFile" >
-    insert into qiniu_file (id, user_id, file_name, 
-      key, hash, status, create_time
+    insert into qiniu_file (key, user_id, file_name, 
+      hash, status, create_time
       )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, 
-      #{key,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}
+    values (#{key,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, 
+      #{hash,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.kz.entity.QiNiuFile" >
     insert into qiniu_file
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="key != null" >
+        key,
       </if>
       <if test="userId != null" >
         user_id,
       </if>
       <if test="fileName != null" >
         file_name,
-      </if>
-      <if test="key != null" >
-        key,
       </if>
       <if test="hash != null" >
         hash,
@@ -136,17 +132,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
       <if test="fileName != null" >
         #{fileName,jdbcType=VARCHAR},
-      </if>
-      <if test="key != null" >
-        #{key,jdbcType=VARCHAR},
       </if>
       <if test="hash != null" >
         #{hash,jdbcType=VARCHAR},
@@ -168,17 +161,14 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update qiniu_file
     <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+      <if test="record.key != null" >
+        key = #{record.key,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.fileName != null" >
         file_name = #{record.fileName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.key != null" >
-        key = #{record.key,jdbcType=VARCHAR},
       </if>
       <if test="record.hash != null" >
         hash = #{record.hash,jdbcType=VARCHAR},
@@ -196,10 +186,9 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update qiniu_file
-    set id = #{record.id,jdbcType=INTEGER},
+    set key = #{record.key,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
       file_name = #{record.fileName,jdbcType=VARCHAR},
-      key = #{record.key,jdbcType=VARCHAR},
       hash = #{record.hash,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=BIT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
@@ -216,9 +205,6 @@
       <if test="fileName != null" >
         file_name = #{fileName,jdbcType=VARCHAR},
       </if>
-      <if test="key != null" >
-        key = #{key,jdbcType=VARCHAR},
-      </if>
       <if test="hash != null" >
         hash = #{hash,jdbcType=VARCHAR},
       </if>
@@ -229,16 +215,15 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where key = #{key,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.kz.entity.QiNiuFile" >
     update qiniu_file
     set user_id = #{userId,jdbcType=INTEGER},
       file_name = #{fileName,jdbcType=VARCHAR},
-      key = #{key,jdbcType=VARCHAR},
       hash = #{hash,jdbcType=VARCHAR},
       status = #{status,jdbcType=BIT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    where key = #{key,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tools.qiniu.QiNiuApi;
 import tools.util.ConfigTool;
 
@@ -26,12 +27,12 @@ public class QiNiuService {
     private static String domain = StringUtils.EMPTY;
 
     @Autowired
-    private static QiNiuFileService qiNiuFileService;
+    private  QiNiuFileService qiNiuFileService;
 
     @Autowired
     private QiNiuFileService qiNiuFileService1;
     @Autowired
-    private SysUserService sysUserService;
+    private static SysUserService sysUserService;
 
     public static String url(String filename) {
         try {
@@ -51,7 +52,7 @@ public class QiNiuService {
         logger.info("QiNiu file-Thread[" + upThread.getId() + "] begin on");
     }
 
-    public static boolean upload(File file, QiNiuFile qiniuFile) {
+    public boolean upload(File file, QiNiuFile qiniuFile) {
         try {
             JSONObject jo = QiNiuApi.upload(file);
             save(jo, qiniuFile);
@@ -64,7 +65,7 @@ public class QiNiuService {
         return false;
     }
 
-    public static boolean uploadFileByte(byte[] fileByte, String fileKey, QiNiuFile qiniuFile) {
+    public  boolean uploadFileByte(byte[] fileByte, String fileKey, QiNiuFile qiniuFile) {
         try {
             JSONObject jo = QiNiuApi.uploadFileByte(fileByte, fileKey);
             save(jo, qiniuFile);
@@ -77,7 +78,7 @@ public class QiNiuService {
         return false;
     }
 
-    public static void save(JSONObject jo, QiNiuFile qiniuFile) {
+    public void save(JSONObject jo, QiNiuFile qiniuFile) {
         if ("SUCCESS".equals(jo.getString("result_code"))) {
             String hash = jo.getString("hash");
             String key = jo.getString("key");
@@ -90,9 +91,9 @@ public class QiNiuService {
             logger.info("[upload]上传失败");
             qiniuFile.setStatus(QiNiuEnum.STATUS.FAIL.getKey());
         }
-        if(qiNiuFileService!=null){
+       /* if(qiNiuFileService!=null){
             qiNiuFileService.save(qiniuFile);
-        }
+        }*/
 
     }
 

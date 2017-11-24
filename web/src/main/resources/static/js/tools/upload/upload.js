@@ -32,8 +32,8 @@ jQuery(function () {
         ratio = window.devicePixelRatio || 1,
 
         // 缩略图大小
-        thumbnailWidth = 110 * ratio,
-        thumbnailHeight = 110 * ratio,
+        thumbnailWidth = 120 * ratio,
+        thumbnailHeight = 120 * ratio,
 
         // 可能有pedding, ready, uploading, confirm, done.
         state = 'pedding',
@@ -52,8 +52,11 @@ jQuery(function () {
             return r;
         })(),
 
+        fileSingleSize = 10,//单个文件上传最大支持的文件大小,单位：M
+        allFileSize = 100,//一次性上传多个文件上传最大支持的所有文件大小,单位：M
         // WebUploader实例
         uploader;
+
 
     if (!WebUploader.Uploader.support()) {
         alert('Web Uploader 不支持您的浏览器！如果你使用的是IE浏览器，请尝试升级 flash 播放器');
@@ -85,9 +88,9 @@ jQuery(function () {
         // 文件接收服务端,写你要执行的方法就行
         server: '/up/pic',
         fileVal:"file",
-        fileNumLimit: 300,
-        fileSizeLimit: 500 * 1024 * 1024,    // 200 M
-        fileSingleSizeLimit: 50 * 1024 * 1024    // 50 M
+        fileNumLimit: 100,//文件个数限制
+        fileSizeLimit: allFileSize * 1024 * 1024,
+        fileSingleSizeLimit: fileSingleSize * 1024 * 1024
     });
 
     // 添加“添加文件”的按钮，
@@ -98,7 +101,7 @@ jQuery(function () {
 
     // 当有文件添加进来时执行，负责view的创建
     function addFile(file) {
-        var $li = $('<li id="' + file.id + '">' +
+        var $li = $('<li id="' + file.id + '" size="' + file.size + '">' +
                 '<p class="title">' + file.name + '</p>' +
                 '<p class="imgWrap"></p>' +
                 '<p class="progress"><span></span></p>' +
@@ -159,7 +162,6 @@ jQuery(function () {
 
             // 成功
             if (cur === 'error' || cur === 'invalid') {
-                console.log(file.statusText);
                 showError(file.statusText);
                 percentages[file.id][1] = 1;
             } else if (cur === 'interrupt') {
@@ -272,8 +274,8 @@ jQuery(function () {
         } else if (state === 'confirm') {
             stats = uploader.getStats();
             if (stats.uploadFailNum) {
-                text = '已成功上传' + stats.successNum + '张照片至XX相册，' +
-                    stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>'
+                text = '已成功上传' + stats.successNum + '张图片，' +
+                    stats.uploadFailNum + '张图片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">移除</a>'
             }
 
         } else {
@@ -365,6 +367,7 @@ jQuery(function () {
     };
 
     uploader.onFileQueued = function (file) {
+        console.log(file)
         fileCount++;
         fileSize += file.size;
 
@@ -392,8 +395,6 @@ jQuery(function () {
     };
 
     uploader.on('all', function (type,arg1,arg2) {
-        var stats;
-        console.log(type)
         switch (type) {
             case 'uploadFinished':
                 setState('confirm');
@@ -414,7 +415,16 @@ jQuery(function () {
     });
 
     uploader.onError = function (code) {
-        alert('Eroor: ' + code);
+        if (code == "Q_EXCEED_NUM_LIMIT") {
+            layer.msg("最多一次性只能上传"+uploader.options.fileNumLimit+"张图片",{icon:"5",title:"选择图片"})
+        }else if (code == "F_EXCEED_SIZE") {
+            layer.msg("单个文件上传最大"+fileSingleSize+"M",{icon:"0",title:"选择图片"})
+        }else if (code == "Q_EXCEED_SIZE_LIMIT") {
+            layer.msg("已超出文件上传最大限制："+allFileSize+"M",{icon:"0",title:"选择图片"})
+        }else{
+            layer.msg("系统错误！",{icon:"2"})
+        }
+
     };
 
     $upload.on('click', function () {
@@ -436,7 +446,25 @@ jQuery(function () {
     });
 
     $info.on('click', '.ignore', function () {
-        alert('todo');
+        var filSize = 0;//单位B
+        $(".filelist>li.state-error").each(function(){
+            $(this).remove();
+        });
+        $(".statusBar>div.info").html("");
+
+        var successFileNum = $(".filelist>li").length;
+        if(successFileNum==0){
+            $(".queueList").removeClass("filled");
+            $("#dndArea").removeClass("element-invisible");
+            $(".statusBar>div.btns").remove();
+        }else{
+            $(".filelist>li").each(function(){
+                fileSize += parseInt($(this).attr("size"));
+            });
+            $(".statusBar>div.info").text("选中"+(successFileNum)+"张图片，共"+(fileSize)/1024/1024+"M。");
+            $("#filePicker2").removeClass("element-invisible");
+            $(".uploadBtn ").removeClass("disabled");
+        }
     });
 
     $upload.addClass('state-' + state);

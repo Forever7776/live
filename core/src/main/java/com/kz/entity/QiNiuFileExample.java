@@ -105,63 +105,73 @@ public class QiNiuFileExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
+        public Criteria andKeyIsNull() {
+            addCriterion("key is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+        public Criteria andKeyIsNotNull() {
+            addCriterion("key is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
+        public Criteria andKeyEqualTo(String value) {
+            addCriterion("key =", value, "key");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
+        public Criteria andKeyNotEqualTo(String value) {
+            addCriterion("key <>", value, "key");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
+        public Criteria andKeyGreaterThan(String value) {
+            addCriterion("key >", value, "key");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
+        public Criteria andKeyGreaterThanOrEqualTo(String value) {
+            addCriterion("key >=", value, "key");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+        public Criteria andKeyLessThan(String value) {
+            addCriterion("key <", value, "key");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
+        public Criteria andKeyLessThanOrEqualTo(String value) {
+            addCriterion("key <=", value, "key");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
+        public Criteria andKeyLike(String value) {
+            addCriterion("key like", value, "key");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
+        public Criteria andKeyNotLike(String value) {
+            addCriterion("key not like", value, "key");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
+        public Criteria andKeyIn(List<String> values) {
+            addCriterion("key in", values, "key");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
+        public Criteria andKeyNotIn(List<String> values) {
+            addCriterion("key not in", values, "key");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyBetween(String value1, String value2) {
+            addCriterion("key between", value1, value2, "key");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyNotBetween(String value1, String value2) {
+            addCriterion("key not between", value1, value2, "key");
             return (Criteria) this;
         }
 
@@ -292,76 +302,6 @@ public class QiNiuFileExample {
 
         public Criteria andFileNameNotBetween(String value1, String value2) {
             addCriterion("file_name not between", value1, value2, "fileName");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyIsNull() {
-            addCriterion("key is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyIsNotNull() {
-            addCriterion("key is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyEqualTo(String value) {
-            addCriterion("key =", value, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyNotEqualTo(String value) {
-            addCriterion("key <>", value, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyGreaterThan(String value) {
-            addCriterion("key >", value, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyGreaterThanOrEqualTo(String value) {
-            addCriterion("key >=", value, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyLessThan(String value) {
-            addCriterion("key <", value, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyLessThanOrEqualTo(String value) {
-            addCriterion("key <=", value, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyLike(String value) {
-            addCriterion("key like", value, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyNotLike(String value) {
-            addCriterion("key not like", value, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyIn(List<String> values) {
-            addCriterion("key in", values, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyNotIn(List<String> values) {
-            addCriterion("key not in", values, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyBetween(String value1, String value2) {
-            addCriterion("key between", value1, value2, "key");
-            return (Criteria) this;
-        }
-
-        public Criteria andKeyNotBetween(String value1, String value2) {
-            addCriterion("key not between", value1, value2, "key");
             return (Criteria) this;
         }
 

@@ -11,7 +11,7 @@ public interface QiNiuFileMapper {
 
     int deleteByExample(QiNiuFileExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String key);
 
     int insert(QiNiuFile record);
 
@@ -19,7 +19,7 @@ public interface QiNiuFileMapper {
 
     List<QiNiuFile> selectByExample(QiNiuFileExample example);
 
-    QiNiuFile selectByPrimaryKey(Integer id);
+    QiNiuFile selectByPrimaryKey(String key);
 
     int updateByExampleSelective(@Param("record") QiNiuFile record, @Param("example") QiNiuFileExample example);
 
