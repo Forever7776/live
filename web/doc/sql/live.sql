@@ -13,36 +13,24 @@ File Encoding         : 65001
 Date: 2017-11-20 12:53:27
 */
 
-SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
--- Table structure for qiniu_file
+-- Table structure for sys_file
 -- ----------------------------
-DROP TABLE IF EXISTS `qiniu_file`;
-CREATE TABLE `qiniu_file` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `file_name` varchar(128) NOT NULL COMMENT '文件名称',
-  `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  KEY `idx_user_id` (`user_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-ALTER TABLE `qiniu_file`
-ADD COLUMN `key`  varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL AFTER `file_name`,
-ADD COLUMN `hash`  varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL AFTER `key`;
-ALTER TABLE `qiniu_file`
-ADD COLUMN `status`  tinyint(1) NULL AFTER `hash`;
-ALTER TABLE `qiniu_file`
-MODIFY COLUMN `create_time`  datetime NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `status`;
-ALTER TABLE `qiniu_file`
-MODIFY COLUMN `key`  varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL AFTER `file_name`;
-
-ALTER TABLE `qiniu_file`
-DROP COLUMN `id`,
-MODIFY COLUMN `key`  varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL FIRST ,
-DROP PRIMARY KEY,
-ADD PRIMARY KEY (`key`);
+DROP TABLE IF EXISTS `sys_file`;
+CREATE TABLE `sys_file` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(55) DEFAULT NULL COMMENT '用户',
+  `file_name` varchar(100) NOT NULL COMMENT '文件名称',
+  `file_size` int(11) NOT NULL COMMENT '大小',
+  `file_key` varchar(100) DEFAULT NULL COMMENT '七牛KEY名',
+  `file_suffix` varchar(50) DEFAULT NULL COMMENT '后缀',
+  `file_type` tinyint(2) NOT NULL COMMENT '1.图片',
+  `file_path` varchar(50) DEFAULT NULL COMMENT '路径',
+  `media_id` varchar(50) DEFAULT NULL COMMENT '微信素材ID',
+  `status` tinyint(2) DEFAULT NULL COMMENT '文件上传成功状态（成功：0 失败 ：-1）',
+  `insert_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '文件插入时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='文件系统表';
 
 
 

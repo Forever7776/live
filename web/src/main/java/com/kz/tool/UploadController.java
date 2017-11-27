@@ -4,7 +4,7 @@ package com.kz.tool;
 import com.alibaba.fastjson.JSONObject;
 import com.constants.SystemConstant;
 import com.kz.controller.BaseController;
-import com.kz.entity.QiNiuFile;
+import com.kz.entity.SysFile;
 import com.kz.service.qiniu.QiNiuService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -54,10 +54,11 @@ public class UploadController extends BaseController {
         }
 
         String newFileName = DateUtils.format(new Date(), DateUtils.yyyyMMddHHmmss) + SystemConstant.QINIU_FILELINK + originFileName;
-        QiNiuFile qiNiuFile = new QiNiuFile();
-        qiNiuFile.setFileName(originFileName);
-        qiNiuFile.setUserId(1);
-        qiNiuService.uploadFileByte(multipartFile.getBytes(), newFileName, qiNiuFile);
+        SysFile sysFile = new SysFile();
+        sysFile.setFileType(0);
+        sysFile.setFileName(originFileName);
+        sysFile.setFileSize(new Long(multipartFile.getSize()).intValue());
+        qiNiuService.uploadFileByte(multipartFile.getBytes(), newFileName, sysFile);
         logger.info("本次上传耗时：{}ms,文件名：{}，时间：{}", (System.currentTimeMillis() - begin), originFileName, DateUtils.format(new Date(), DateUtils.YYYYMMDDHHMMSS));
         return result;
     }

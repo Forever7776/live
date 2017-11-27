@@ -42,13 +42,14 @@
         </javaClientGenerator>
 
 
-        <table tableName="qiniu_file" domainObjectName="QiNiuFile"
+        <table tableName="sys_file" domainObjectName="SysFile"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true">
             <columnOverride column="status" javaType="Integer"/>
+            <columnOverride column="file_type" javaType="Integer"/>
         </table>
     </context>
 </generatorConfiguration>
