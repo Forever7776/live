@@ -1,8 +1,8 @@
 <#include "../inc/inc.ftl"/>
-<@html upload_=true css_=['upload.css'] script_=['tools/upload/upload.js']>
+<@html upload_=true css_=['upload.css'] script_=['tools/upload/upload.js'] fontawesome=true>
 <div style="padding: 100px 100px 10px;">
     <div class="form-group">
-        <label class="col-xs-2 col-xs-2 control-label">图片：</label>
+        <label class="col-xs-2 col-xs-2 control-label"><i class="fa fa-picture-o" aria-hidden="true"></i>图片：</label>
         <div class="col-xs-10">
 
             <div id="goodsImages">

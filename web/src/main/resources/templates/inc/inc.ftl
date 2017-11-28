@@ -1,5 +1,5 @@
 <#include "./public.ftl"/>
-<#macro html title_="mlive" menu_=true upload_=false css_=[] app_=[] editor_=false script_=[] echarts=false datepicker_=false autocompleter_=false datetimepicker_=false nestable_=false chosen_=false >
+<#macro html title_="mlive" menu_=true upload_=false css_=[] app_=[] editor_=false script_=[] echarts=false datepicker_=false autocompleter_=false datetimepicker_=false fontawesome=false >
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,16 +22,13 @@
         <link rel="stylesheet" type="text/css"
               href="//cdn.bootcss.com/bootstrap-datetimepicker/4.15.35/css/bootstrap-datetimepicker.min.css">
     </#if>
-    <#if nestable_>
-        <link rel="stylesheet" type="text/css" href="<@res u_="platform/js/nestable/jquery.nestable.css"/>">
-    </#if>
-    <#if chosen_>
-        <link rel="stylesheet" type="text/css" href="<@res u_="scripts/chosen/chosen.min.css"/>">
-    </#if>
     <#list css_ as li>
         <link rel="stylesheet" href="${root}/css/${li}">
     </#list>
     <link rel="stylesheet" type="text/css" href="${root}/js/tools/layer/theme/default/layer.css">
+    <#if fontawesome>
+        <link rel="stylesheet" type="text/css" href="${root}/css/tools/font-awesome-4.7.0/css/font-awesome.css"/>
+    </#if>
 </head>
 <body class="sticky-header">
 <section>
@@ -61,12 +58,6 @@
 <script src="http://cdn.bootcss.com/moment.js/2.10.6/moment.min.js"></script>
 <script src="http://cdn.bootcss.com/moment.js/2.10.6/locale/zh-cn.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-datetimepicker/4.15.35/js/bootstrap-datetimepicker.min.js"></script>
-</#if>
-<#if nestable_>
-<script src="<@res u_="platform/js/nestable/jquery.nestable.js"/>"></script>
-</#if>
-<#if chosen_>
-<script src="<@res u_="scripts/chosen/chosen.jquery.min.js"/>"></script>
 </#if>
 
 
